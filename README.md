@@ -3,7 +3,7 @@
 
 Yuqing Xie*, Chao Yu*, Hongzhi Zang*, Wenhao Tang, Jingyi Huang, Jiayu Chen, Botian Xu, Yi Wu, Yu Wang
 
-Website: https://sites.google.com/view/ uav-formation-with-avoidance/
+Website: https://sites.google.com/view/uav-formation-with-avoidance/
 
 This is the official repository of the paper "Multi-UAV Formation Control with Static and Dynamic Obstacle Avoidance via Reinforcement Learning". This repository is heavily based on https://github.com/btx0424/OmniDrones.git.
 
