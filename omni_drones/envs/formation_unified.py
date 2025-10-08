@@ -584,7 +584,7 @@ class FormationUnified(IsaacEnv):
             "reward_spin": UnboundedContinuousTensorSpec(self.drone.n),
             "reward_throttle_smoothness": UnboundedContinuousTensorSpec(self.drone.n),
             "morl_smooth_reward": UnboundedContinuousTensorSpec(self.drone.n),
-            "avg_acc": UnboundedContinuousTensorSpec(1),
+            # "avg_acc": UnboundedContinuousTensorSpec(1),
             
             "reward": UnboundedContinuousTensorSpec(self.drone.n),
             "return": UnboundedContinuousTensorSpec(1),
@@ -1248,7 +1248,7 @@ class FormationUnified(IsaacEnv):
         y_spin = torch.abs(self.drone.vel[..., -1])
         # reward_spin = 1 / (1 + y_spin)
         reward_spin = torch.clip(1.5-y_spin, min=0) # 1.5->0.25
-        avg_acc = torch.norm(self.drone.get_acc()[..., :3], p=2, dim=-1).mean()
+        # avg_acc = torch.norm(self.drone.get_acc()[..., :3], p=2, dim=-1).mean()
 
         morl_smooth = (reward_effort * self.reward_effort_weight
             + reward_action_smoothness * self.cfg.task.reward_action_smoothness_weight
@@ -1268,7 +1268,7 @@ class FormationUnified(IsaacEnv):
         self.stats["reward_spin"].lerp_(reward_spin, (1-self.alpha))
         self.stats["reward_throttle_smoothness"].lerp_(reward_throttle_smoothness, (1-self.alpha))
         self.stats["morl_smooth_reward"].lerp_(morl_smooth, (1-self.alpha))
-        self.stats["avg_acc"].lerp_(avg_acc, (1-self.alpha))
+        # self.stats["avg_acc"].lerp_(avg_acc, (1-self.alpha))
 
         morl_formation = (
             (reward_size * ball_coeff + reward_size * after_throw_mask * self.cfg.task.after_throw_coeff) * self.cfg.task.formation_size_coeff
