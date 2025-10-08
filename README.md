@@ -132,9 +132,10 @@ scripts
 For policy training and evaluation, run the following commands:
 ```
 cd scripts
-python train_weight.py # for stage-1 training, try multiple reward weights
-python parse_weight.py # obtain a csv file that contains all reward weights and their corresponding performance
-
+# for stage-1 training, try multiple reward weights
+python train_weight.py 
+# obtain a csv file that contains all reward weights and their corresponding performance
+python parse_weight.py 
 ```
 
 After determining the best reward function, fill in the weight in `cfg/task/FormationUnified.yaml` and then run:
