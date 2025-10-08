@@ -27,7 +27,7 @@ Set the following environment variables to your ``~/.bashrc`` or ``~/.zshrc`` fi
 export ISAACSIM_PATH="${HOME}/.local/share/ov/pkg/isaac_sim-2022.2.0"
 ```
 
-*(Currently we use isaac_sim-2022.2.0. Whether other versions can work or not is not guaranteed. We provide a .zip flie for [isaac_sim-2022.2.0](https://drive.google.com/file/d/1ZrfhIkQVdRynthJ2FqGBC5jA93J6yEiZ/view?usp=sharing). For easy usage, we also provide a [guide](https://github.com/thu-uav/Multi-UAV-pursuit-evasion/issues/1#issuecomment-2573176995) on the correct usage of Isaac Sim 2022.)*
+*(Currently we use isaac_sim-2022.2.0. Whether other versions can work or not is not guaranteed. We provide a .zip flie for [isaac_sim-2022.2.0](https://drive.google.com/file/d/1ZrfhIkQVdRynthJ2FqGBC5jA93J6yEiZ/view?usp=sharing).*
 
 After adding the environment variable, apply the changes by running:
 ```
@@ -36,17 +36,16 @@ source ~/.bashrc
 
 #### 2. Conda
 
-Although Isaac Sim comes with a built-in Python environment, we recommend using a seperate conda environment which is more flexible. We provide scripts to automate environment setup when activating/deactivating a conda environment at ``Multi-UAV-pursuit-evasion/conda_setup``.
+Although Isaac Sim comes with a built-in Python environment, we recommend using a seperate conda environment which is more flexible. We provide scripts to automate environment setup when activating/deactivating a conda environment at ``conda_setup``.
 
 ```
 conda create -n sim python=3.7
 conda activate sim
 
-# at Multi-UAV-pursuit-evasion/
 cp -r conda_setup/etc $CONDA_PREFIX
 # re-activate the environment
 conda activate sim
-# install Multi-UAV-pursuit-evasion
+
 pip install -e .
 
 # verification
@@ -56,23 +55,20 @@ python -c "import torch; print(torch.__path__)"
 ```
 
 #### 3. Third Party Packages
-Multi-UAV-pursuit-evasion requires specific versions of the `tensordict` and `torchrl` packages. For the ``deploy`` branch, it supports `tensordict` version 0.1.2+5e6205c and `torchrl` version 0.1.1+e39e701. 
+This project requires specific versions of the `tensordict` and `torchrl` packages. For the ``deploy`` branch, it supports `tensordict` version 0.1.2+5e6205c and `torchrl` version 0.1.1+e39e701. 
 
 We manage these two packages using Git submodules to ensure that the correct versions are used. To initialize and update the submodules, follow these steps:
 
 Get the submodules:
 ```
-# at Multi-UAV-pursuit-evasion/
 git submodule update --init --recursive
 ```
 Pip install these two packages respectively:
 ```
-# at Multi-UAV-pursuit-evasion/
 cd third_party/tensordict
 pip install -e . --no-build-isolation
 ```
 ```
-# at Multi-UAV-pursuit-evasion/
 cd third_party/torchrl
 pip install -e . --no-build-isolation
 ```
@@ -82,9 +78,8 @@ pip install dgl -f https://data.dgl.ai/wheels/torch-1.13/cu122/repo.html
 ```
 #### 4. Verification
 ```
-# at Multi-UAV-pursuit-evasion/
 cd scripts
-python train.py headless=true wandb.mode=disabled total_frames=50000 task=Hover
+python train.py headless=true wandb.mode=disabled total_frames=50000
 ```
 
 #### 5. Working with VSCode
